@@ -1,6 +1,7 @@
 package source;
 
 import java.sql.*;
+import java.util.List;
 
 
 public class Application {
@@ -26,6 +27,25 @@ public class Application {
                 System.out.println(gender);
                 System.out.println(city);
             }
+
+            EmployeeDao employeeDao = new EmployeeDaoImpl();
+            List <Employee> employees  = employeeDao.getAllEmployee();
+
+            for (Employee employee : employees) {
+                System.out.println("Id: " + employee.getId());
+                System.out.println("Name: " + employee.getFirst_name());
+                System.out.println("Surname: " + employee.getLast_name());
+                System.out.println("Gender: " + employee.getGender());
+                System.out.println("City id: " + employee.getCity_id());
+                System.out.println("Age: " + employee.getAge());
+                System.out.println("----------------------------------");
+            }
+            Employee john = new Employee(7,"john", "Washington", "male", 44,1);
+//            employeeDao.createEmployee(john);
+//            employeeDao.deleteEmployee(7);
+//            employeeDao.updateEmployee(4, john);
+
+            System.out.println(employeeDao.getById(3).getFirst_name());
         }
     }
 }
